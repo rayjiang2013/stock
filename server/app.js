@@ -211,7 +211,7 @@ function textRequestHandler(req, res, number, carrier, region, key) {
         }
       });
     }, 1000*60*3);
-    if (num > 3) {
+    if (num > 1000) {
       //mpq.track('exceeded phone quota', tracking_details);
       res.send({success:false, message:'Exceeded quota for this phone number. ' + number});
       return;
@@ -224,7 +224,7 @@ function textRequestHandler(req, res, number, carrier, region, key) {
         res.send({success:false, message:'Could not validate IP quota.'});
         return;
       }
-      if (num > 75) {
+      if (num > 1000) {
         mpq.track('exceeded ip quota', tracking_details);
         res.send({success:false, message:'Exceeded quota for this IP address. ' + ip});
         return;
